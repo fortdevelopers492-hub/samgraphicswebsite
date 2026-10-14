@@ -14,7 +14,7 @@
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script type="text/javascript">
         (function() {
-            emailjs.init("YOUR_PUBLIC_KEY");
+            emailjs.init("91rtXyC6Nw4OoDlVv");
         })();
     </script>
     <style>
@@ -154,9 +154,15 @@
             color: var(--text-main);
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             background-color: var(--accent-hover);
             transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
         }
 
         .btn-secondary {
@@ -901,7 +907,7 @@
                         <label for="projectDesc">Project Description</label>
                         <textarea id="projectDesc" class="form-control" placeholder="Describe your design needs, style preferences, and goals..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Project Request</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%;">Submit Project Request</button>
                 </form>
             </div>
         </div>
@@ -1057,7 +1063,6 @@
             e.preventDefault();
             const buyerEmail = document.getElementById('buyerEmail').value;
             
-            // Generate payment reference starting with "IFDESIGN-"
             const randomNum = Math.floor(100000 + Math.random() * 900000);
             const paymentRef = `IFDESIGN-${randomNum}`;
             
@@ -1072,7 +1077,6 @@
                 callback: function(response) {
                     alert('Payment successful! Reference: ' + response.reference);
                     
-                    // Fetch image as blob to force secure download without opening a new tab
                     fetch(selectedImageSrc)
                         .then(res => res.blob())
                         .then(blob => {
@@ -1087,7 +1091,6 @@
                         })
                         .catch(err => {
                             console.error('Download failed:', err);
-                            // Fallback direct link download
                             const a = document.createElement('a');
                             a.href = selectedImageSrc;
                             a.target = '_blank';
@@ -1104,24 +1107,75 @@
             handler.openIframe();
         });
 
+        // Project Request Form Handler with Admin Email, Auto-Reply, Clearing, and 10s Cooldown
         const projectForm = document.getElementById('projectForm');
+        const submitBtn = document.getElementById('submitBtn');
+
         projectForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const templateParams = {
-                projectowner_name: document.getElementById('projectName').value,
-                project_description: document.getElementById('projectDesc').value,
-                projectowner_whatsapp_number: document.getElementById('projectWhatsapp').value,
-                projectowner_email_address: document.getElementById('projectEmail').value,
-                to_email: 'asam72634@gmail.com'
+            const clientName = document.getElementById('projectName').value;
+            const clientEmail = document.getElementById('projectEmail').value;
+            const clientWhatsapp = document.getElementById('projectWhatsapp').value;
+            const clientDesc = document.getElementById('projectDesc').value;
+
+            // 1. Parameters for Admin Notification (to Sam Graphics)
+            const adminTemplateParams = {
+                projectowner_name: clientName,
+                project_description: clientDesc,
+                projectowner_whatsapp_number: clientWhatsapp,
+                projectowner_email_address: clientEmail
             };
 
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            // 2. Parameters for Auto-Reply Confirmation (to Client)
+            const autoReplyTemplateParams = {
+                projectowner_name: clientName,
+                projectowner_email_address: clientEmail,
+                message: `Hi ${clientName}, this confirmation email is sent to your email to notify you that your project request has been recieved. Best Regards, Sam Graphics`
+            };
+
+            // Disable submit button during processing
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending Request...';
+
+            const SERVICE_ID = 'service_3dg8kyi';
+            const ADMIN_TEMPLATE_ID = 'template_r7xceh5';
+            const AUTOREPLY_TEMPLATE_ID = 'template_vegoh1b';
+
+            // Send notification to admin first, then send auto-reply to client
+            emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, adminTemplateParams)
                 .then(function(response) {
-                    alert('Project request sent successfully! Sam Graphics will reach out to you shortly.');
+                    return emailjs.send(SERVICE_ID, AUTOREPLY_TEMPLATE_ID, autoReplyTemplateParams);
+                })
+                .then(function(response) {
+                    alert('Project request sent successfully! A confirmation email has also been dispatched to your inbox.');
+                    
+                    // Clear form inputs
                     projectForm.reset();
-                }, function(error) {
-                    alert('Failed to send project request. Please contact directly via WhatsApp. Error: ' + JSON.stringify(error));
+
+                    // 10-second cooldown timer
+                    let timeLeft = 10;
+                    submitBtn.textContent = `Please wait (${timeLeft}s)`;
+
+                    const cooldownInterval = setInterval(() => {
+                        timeLeft--;
+                        if (timeLeft > 0) {
+                            submitBtn.textContent = `Please wait (${timeLeft}s)`;
+                        } else {
+                            clearInterval(cooldownInterval);
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Submit Project Request';
+                        }
+                    }, 1000);
+
+                })
+                .catch(function(error) {
+                    console.error('EmailJS Error:', error);
+                    alert('Failed to send project request. Error: ' + (error.text || JSON.stringify(error)));
+                    
+                    // Unlock button immediately if an error occurs
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Project Request';
                 });
         });
     </script>
