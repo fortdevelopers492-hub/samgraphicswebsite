@@ -285,7 +285,7 @@
             color: var(--text-secondary);
         }
 
-        /* GALLERY SECTION */
+        /* GALLERY PREVIEW SECTION */
         .gallery-section {
             padding: 100px 0;
             background-color: rgba(21, 21, 28, 0.3);
@@ -894,7 +894,7 @@
             }
         });
 
-        // Project Request Form Handler
+        // Project Request Form Handler with Admin Email, Auto-Reply, Clearing, and 10s Cooldown
         const projectForm = document.getElementById('projectForm');
         const submitBtn = document.getElementById('submitBtn');
 
@@ -906,6 +906,7 @@
             const clientWhatsapp = document.getElementById('projectWhatsapp').value;
             const clientDesc = document.getElementById('projectDesc').value;
 
+            // 1. Parameters for Admin Notification (to Sam Graphics)
             const adminTemplateParams = {
                 projectowner_name: clientName,
                 project_description: clientDesc,
@@ -913,12 +914,14 @@
                 projectowner_email_address: clientEmail
             };
 
+            // 2. Parameters for Auto-Reply Confirmation (to Client)
             const autoReplyTemplateParams = {
                 projectowner_name: clientName,
                 projectowner_email_address: clientEmail,
                 message: `Hi ${clientName}, this confirmation email is sent to your email to notify you that your project request has been received. Best Regards, Sam Graphics`
             };
 
+            // Disable submit button during processing
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending Request...';
 
@@ -926,14 +929,18 @@
             const ADMIN_TEMPLATE_ID = 'template_r7xceh5';
             const AUTOREPLY_TEMPLATE_ID = 'template_vegoh1b';
 
+            // Send notification to admin first, then send auto-reply to client
             emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, adminTemplateParams)
                 .then(function(response) {
                     return emailjs.send(SERVICE_ID, AUTOREPLY_TEMPLATE_ID, autoReplyTemplateParams);
                 })
                 .then(function(response) {
                     alert('Project request sent successfully! A confirmation email has also been dispatched to your inbox.');
+                    
+                    // Clear form inputs
                     projectForm.reset();
 
+                    // 10-second cooldown timer
                     let timeLeft = 10;
                     submitBtn.textContent = `Please wait (${timeLeft}s)`;
 
@@ -952,6 +959,8 @@
                 .catch(function(error) {
                     console.error('EmailJS Error:', error);
                     alert('Failed to send project request. Error: ' + (error.text || JSON.stringify(error)));
+                    
+                    // Unlock button immediately if an error occurs
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Submit Project Request';
                 });
