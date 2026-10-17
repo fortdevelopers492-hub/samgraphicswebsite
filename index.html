@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <!-- Paystack Inline JS SDK -->
-    <script src="https://js.paystack.co/v1/inline.js"></script>
     <script type="text/javascript">
         (function() {
             emailjs.init("91rtXyC6Nw4OoDlVv");
@@ -86,6 +84,7 @@
             display: flex;
             list-style: none;
             gap: 30px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -147,6 +146,10 @@
             cursor: pointer;
             border: none;
             font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .btn-primary {
@@ -316,10 +319,11 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            cursor: pointer;
             transition: transform 0.3s, border-color 0.3s;
             -webkit-user-drag: none;
             user-select: none;
+            display: flex;
+            flex-direction: column;
         }
 
         .gallery-item:hover {
@@ -347,6 +351,10 @@
 
         .gallery-info {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .gallery-info h4 {
@@ -357,6 +365,12 @@
         .gallery-info p {
             color: var(--text-secondary);
             font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .gallery-cta-wrapper {
+            text-align: center;
+            margin-top: 50px;
         }
 
         /* WEB DEVELOPER AD SECTION */
@@ -496,38 +510,17 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .social-card.whatsapp {
-            background-color: #25D366;
-        }
-        .social-card.whatsapp:hover {
-            background-color: #20ba5a;
-            transform: translateY(-3px);
-        }
+        .social-card.whatsapp { background-color: #25D366; }
+        .social-card.whatsapp:hover { background-color: #20ba5a; transform: translateY(-3px); }
 
-        .social-card.email {
-            background-color: var(--accent-main);
-        }
-        .social-card.email:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-3px);
-        }
+        .social-card.email { background-color: var(--accent-main); }
+        .social-card.email:hover { background-color: var(--accent-hover); transform: translateY(-3px); }
 
-        .social-card.tiktok {
-            background-color: #000000;
-            border: 1px solid var(--border-color);
-        }
-        .social-card.tiktok:hover {
-            background-color: #1a1a1a;
-            transform: translateY(-3px);
-        }
+        .social-card.tiktok { background-color: #000000; border: 1px solid var(--border-color); }
+        .social-card.tiktok:hover { background-color: #1a1a1a; transform: translateY(-3px); }
 
-        .social-card.facebook {
-            background-color: #1877f2;
-        }
-        .social-card.facebook:hover {
-            background-color: #0d65d9;
-            transform: translateY(-3px);
-        }
+        .social-card.facebook { background-color: #1877f2; }
+        .social-card.facebook:hover { background-color: #0d65d9; transform: translateY(-3px); }
 
         .social-icon {
             font-size: 2rem;
@@ -572,77 +565,6 @@
         footer a:hover {
             color: var(--accent-hover);
             text-decoration: underline;
-        }
-
-        /* MODALS */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            max-width: 600px;
-            width: 90%;
-            padding: 30px;
-            position: relative;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .modal-close:hover {
-            color: var(--text-main);
-        }
-
-        .modal-img-preview {
-            width: 100%;
-            max-height: 350px;
-            object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            background-color: var(--bg-main);
-            pointer-events: none;
-        }
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
         }
 
         /* MEDIA QUERIES FOR MOBILE SCREENS */
@@ -699,9 +621,6 @@
             .project-form-container {
                 padding: 20px 15px;
             }
-            .contact-section .section-title {
-                margin-bottom: 40px !important;
-            }
         }
     </style>
 </head>
@@ -715,7 +634,8 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#why">Why Me</a></li>
-                    <li><a href="#gallery1">Gallery</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="gallery.html" style="color: var(--accent-main); font-weight: 600;"><i class="fa-solid fa-images"></i> Full Gallery</a></li>
                     <li><a href="#project">Project Request</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -732,7 +652,7 @@
             <h1>I turn ideas to <span>visuals</span></h1>
             <p class="subtext">Graphic Designer • Branding • Flyers • Social Media • Visual Design</p>
             <div class="hero-buttons">
-                <a href="#gallery1" class="btn btn-primary">View My Work</a>
+                <a href="#gallery" class="btn btn-primary">View My Work</a>
                 <a href="https://wa.me/2349130962622?text=Hi%20Sam%20Graphics,%20I%20would%20like%20to%20hire%20you%20for%20a%20design%20project." target="_blank" class="btn btn-secondary">Hire Me</a>
             </div>
         </div>
@@ -786,10 +706,10 @@
         </div>
     </section>
 
-    <!-- 3. GALLERY / MY DESIGNS SECTION -->
-    <section class="gallery-section" id="gallery1">
+    <!-- 3. GALLERY PREVIEW SECTION -->
+    <section class="gallery-section" id="gallery">
         <div class="container">
-            <h2 class="section-title" style="text-align: center;">Gallery & <span>My Designs</span></h2>
+            <h2 class="section-title" style="text-align: center;">Featured <span>Gallery Preview</span></h2>
             <div class="services-tags">
                 <span class="service-tag">🎨 Logo & Brand Identity</span>
                 <span class="service-tag">📱 Social Media</span>
@@ -798,34 +718,50 @@
                 <span class="service-tag">👕 Merchandise</span>
                 <span class="service-tag">📦 Mockups</span>
             </div>
-            <div class="gallery-grid" id="galleryGrid1">
-                <div class="gallery-item" data-title="Brand Identity System" data-category="Logo & Brand Identity" data-img="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1000&q=80">
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item">
                     <div class="gallery-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80" alt="Brand Identity">
                     </div>
                     <div class="gallery-info">
-                        <h4>Brand Identity System</h4>
-                        <p>Logo & Brand Identity</p>
+                        <div>
+                            <h4>Brand Identity System</h4>
+                            <p>Logo & Brand Identity</p>
+                        </div>
+                        <a href="gallery.html#item-brand-identity" class="btn btn-primary" style="padding: 10px 16px; font-size: 0.9rem; width: 100%; margin-top: 15px;">Download / View</a>
                     </div>
                 </div>
-                <div class="gallery-item" data-title="Social Media Ad Campaign" data-category="Social Media Designs" data-img="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1000&q=80">
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item">
                     <div class="gallery-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="Social Media Ad">
                     </div>
                     <div class="gallery-info">
-                        <h4>Social Media Ad Campaign</h4>
-                        <p>Social Media Designs</p>
+                        <div>
+                            <h4>Social Media Ad Campaign</h4>
+                            <p>Social Media Designs</p>
+                        </div>
+                        <a href="gallery.html#item-social-ad" class="btn btn-primary" style="padding: 10px 16px; font-size: 0.9rem; width: 100%; margin-top: 15px;">Download / View</a>
                     </div>
                 </div>
-                <div class="gallery-item" data-title="Event Promo Flyer" data-category="Flyers & Posters" data-img="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1000&q=80">
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item">
                     <div class="gallery-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80" alt="Flyer">
                     </div>
                     <div class="gallery-info">
-                        <h4>Event Promo Flyer</h4>
-                        <p>Flyers & Posters</p>
+                        <div>
+                            <h4>Event Promo Flyer</h4>
+                            <p>Flyers & Posters</p>
+                        </div>
+                        <a href="gallery.html#item-event-flyer" class="btn btn-primary" style="padding: 10px 16px; font-size: 0.9rem; width: 100%; margin-top: 15px;">Download / View</a>
                     </div>
                 </div>
+            </div>
+            
+            <div class="gallery-cta-wrapper">
+                <a href="gallery.html" class="btn btn-primary"><i class="fa-solid fa-images"></i> Open Full Gallery Page</a>
             </div>
         </div>
     </section>
@@ -843,49 +779,14 @@
                     </div>
                 </div>
                 <div class="dev-ad-buttons">
-                    <a href="https://wa.me/234xxxxxxxxxx?text=Hi%20Fort%20DL,%20I%20want%20a%20website%20created%20for%20my%20business." target="_blank" class="btn btn-primary" style="background-color: #25D366;">Chat for Website</a>
-                    <a href="#contact" class="btn btn-secondary">Browse Website Packages</a>
+                    <a href="https://wa.me/2348028241162?text=Hi%20Fort%20DL,%20I%20want%20a%20website%20created%20for%20my%20business." target="_blank" class="btn btn-primary" style="background-color: #25D366;">Chat for Website</a>
+                    <a href="https://createawebsite.fortdevelopers.com.ng" class="btn btn-secondary">Browse Website Packages</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. GALLERY/MY DESIGNS CONTINUATION -->
-    <section class="gallery-section" id="gallery2" style="background-color: var(--bg-main);">
-        <div class="container">
-            <div class="gallery-grid" id="galleryGrid2">
-                <div class="gallery-item" data-title="Executive Business Cards" data-category="Business Cards" data-img="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80" alt="Business Cards">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>Executive Business Cards</h4>
-                        <p>Business/Complimentary Cards</p>
-                    </div>
-                </div>
-                <div class="gallery-item" data-title="Custom Streetwear Merchandise" data-category="T-shirt & Merchandise" data-img="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Merchandise">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>Custom Streetwear Merchandise</h4>
-                        <p>T-shirt & Merchandise Design</p>
-                    </div>
-                </div>
-                <div class="gallery-item" data-title="3D Product Box Mockup" data-category="Product Mockups" data-img="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Product Mockup">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>3D Product Box Mockup</h4>
-                        <p>Product/Brand Mockups</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. PROJECT REQUEST SECTION -->
+    <!-- 5. PROJECT REQUEST SECTION -->
     <section class="project-section" id="project">
         <div class="container">
             <h2 class="section-title" style="text-align: center;">Have a Project Idea? <span>Fill it in below</span></h2>
@@ -913,7 +814,7 @@
         </div>
     </section>
 
-    <!-- 7. CONTACT SECTION -->
+    <!-- 6. CONTACT SECTION -->
     <section class="contact-section" id="contact">
         <div class="container">
             <h2 class="section-title" style="text-align: center;">Get In <span>Touch</span></h2>
@@ -950,44 +851,12 @@
         </div>
     </section>
 
-    <!-- 8. FOOTER -->
+    <!-- 7. FOOTER -->
     <footer>
         <div class="container">
             <p>&copy; 2026 SAM GRAPHICS. All rights reserved. Website Design by <a href="https://fortdevelopers.com.ng" target="_blank">Fort Developers</a>.</p>
         </div>
     </footer>
-
-    <!-- MODAL 1: IMAGE VIEW & DOWNLOAD BUTTON -->
-    <div class="modal-overlay" id="imageModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeImageModal">&times;</button>
-            <h3 id="modalTitle" style="margin-bottom: 15px;">Design Title</h3>
-            <img src="" id="modalImg" class="modal-img-preview" alt="Preview">
-            <div class="modal-actions">
-                <button class="btn btn-primary" id="proceedToPayBtn">Download Design (₦500)</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL 2: EMAIL INPUT & PAYSTACK GATEWAY SIMULATION -->
-    <div class="modal-overlay" id="payModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closePayModal">&times;</button>
-            <h3 style="margin-bottom: 15px;">Complete Purchase</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem;">Enter your email to receive the high-resolution file and payment confirmation.</p>
-            <form id="paystackForm">
-                <div class="form-group">
-                    <label for="buyerEmail">Email Address</label>
-                    <input type="email" id="buyerEmail" class="form-control" placeholder="your@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="lockedPrice">Price (Naira)</label>
-                    <input type="text" id="lockedPrice" class="form-control" value="₦500" disabled style="background-color: var(--border-color); cursor: not-allowed; font-weight: 700; color: var(--accent-main);">
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Proceed to Paystack</button>
-            </form>
-        </div>
-    </div>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
@@ -1025,89 +894,7 @@
             }
         });
 
-        const imageModal = document.getElementById('imageModal');
-        const payModal = document.getElementById('payModal');
-        const modalImg = document.getElementById('modalImg');
-        const modalTitle = document.getElementById('modalTitle');
-        const closeImageModal = document.getElementById('closeImageModal');
-        const closePayModal = document.getElementById('closePayModal');
-        const proceedToPayBtn = document.getElementById('proceedToPayBtn');
-        const paystackForm = document.getElementById('paystackForm');
-
-        let selectedImageSrc = '';
-
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => {
-                selectedImageSrc = item.getAttribute('data-img');
-                modalImg.src = selectedImageSrc;
-                modalTitle.textContent = item.getAttribute('data-title');
-                imageModal.classList.add('active');
-            });
-        });
-
-        closeImageModal.addEventListener('click', () => {
-            imageModal.classList.remove('active');
-        });
-
-        closePayModal.addEventListener('click', () => {
-            payModal.classList.remove('active');
-        });
-
-        proceedToPayBtn.addEventListener('click', () => {
-            imageModal.classList.remove('active');
-            payModal.classList.add('active');
-        });
-
-        // Live Paystack Popup Checkout Integration with Background Blob Download
-        paystackForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const buyerEmail = document.getElementById('buyerEmail').value;
-            
-            const randomNum = Math.floor(100000 + Math.random() * 900000);
-            const paymentRef = `IFDESIGN-${randomNum}`;
-            
-            payModal.classList.remove('active');
-
-            let handler = PaystackPop.setup({
-                key: 'pk_live_fc0f932056fd8b1265e34a3f47d271d6e8659201',
-                email: buyerEmail,
-                amount: 50000, // ₦500 in kobo
-                currency: 'NGN',
-                ref: paymentRef,
-                callback: function(response) {
-                    alert('Payment successful! Reference: ' + response.reference);
-                    
-                    fetch(selectedImageSrc)
-                        .then(res => res.blob())
-                        .then(blob => {
-                            const blobUrl = window.URL.createObjectURL(blob);
-                            const a = document.createElement('a');
-                            a.href = blobUrl;
-                            a.download = `${response.reference}.jpg`;
-                            document.body.appendChild(a);
-                            a.click();
-                            document.body.removeChild(a);
-                            window.URL.revokeObjectURL(blobUrl);
-                        })
-                        .catch(err => {
-                            console.error('Download failed:', err);
-                            const a = document.createElement('a');
-                            a.href = selectedImageSrc;
-                            a.target = '_blank';
-                            a.download = `${response.reference}.jpg`;
-                            document.body.appendChild(a);
-                            a.click();
-                            document.body.removeChild(a);
-                        });
-                },
-                onClose: function() {
-                    alert('Transaction was not completed, window closed.');
-                }
-            });
-            handler.openIframe();
-        });
-
-        // Project Request Form Handler with Admin Email, Auto-Reply, Clearing, and 10s Cooldown
+        // Project Request Form Handler
         const projectForm = document.getElementById('projectForm');
         const submitBtn = document.getElementById('submitBtn');
 
@@ -1119,7 +906,6 @@
             const clientWhatsapp = document.getElementById('projectWhatsapp').value;
             const clientDesc = document.getElementById('projectDesc').value;
 
-            // 1. Parameters for Admin Notification (to Sam Graphics)
             const adminTemplateParams = {
                 projectowner_name: clientName,
                 project_description: clientDesc,
@@ -1127,14 +913,12 @@
                 projectowner_email_address: clientEmail
             };
 
-            // 2. Parameters for Auto-Reply Confirmation (to Client)
             const autoReplyTemplateParams = {
                 projectowner_name: clientName,
                 projectowner_email_address: clientEmail,
-                message: `Hi ${clientName}, this confirmation email is sent to your email to notify you that your project request has been recieved. Best Regards, Sam Graphics`
+                message: `Hi ${clientName}, this confirmation email is sent to your email to notify you that your project request has been received. Best Regards, Sam Graphics`
             };
 
-            // Disable submit button during processing
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending Request...';
 
@@ -1142,18 +926,14 @@
             const ADMIN_TEMPLATE_ID = 'template_r7xceh5';
             const AUTOREPLY_TEMPLATE_ID = 'template_vegoh1b';
 
-            // Send notification to admin first, then send auto-reply to client
             emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, adminTemplateParams)
                 .then(function(response) {
                     return emailjs.send(SERVICE_ID, AUTOREPLY_TEMPLATE_ID, autoReplyTemplateParams);
                 })
                 .then(function(response) {
                     alert('Project request sent successfully! A confirmation email has also been dispatched to your inbox.');
-                    
-                    // Clear form inputs
                     projectForm.reset();
 
-                    // 10-second cooldown timer
                     let timeLeft = 10;
                     submitBtn.textContent = `Please wait (${timeLeft}s)`;
 
@@ -1172,8 +952,6 @@
                 .catch(function(error) {
                     console.error('EmailJS Error:', error);
                     alert('Failed to send project request. Error: ' + (error.text || JSON.stringify(error)));
-                    
-                    // Unlock button immediately if an error occurs
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Submit Project Request';
                 });
