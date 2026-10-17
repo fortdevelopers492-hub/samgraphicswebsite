@@ -227,6 +227,32 @@
             background-color: rgba(124, 58, 237, 0.05);
         }
 
+        /* FILTER BUTTONS SECTION */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 10px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--accent-main);
+            color: var(--text-main);
+            border-color: var(--accent-main);
+        }
+
         /* GALLERY SECTION */
         .gallery-section {
             padding: 60px 0 80px 0;
@@ -285,13 +311,11 @@
             font-size: 0.9rem;
         }
 
-        /* WEB DEVELOPER AD SECTION */
+        /* WEB DEVELOPER AD SECTION SPANNING FULL GRID WIDTH */
         .dev-ad-section {
-            padding: 60px 0;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(21, 21, 28, 0.8) 100%);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            margin: 60px 0;
+            grid-column: 1 / -1;
+            padding: 20px 0;
+            margin: 20px 0;
         }
 
         .dev-ad-card {
@@ -564,89 +588,301 @@
     <!-- GALLERY SECTION -->
     <section class="gallery-section">
         <div class="container">
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item" id="item-brand-identity" data-id="item-brand-identity" data-title="Brand Identity System" data-category="Logo & Brand Identity" data-img="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80" alt="Brand Identity">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>Brand Identity System</h4>
-                        <p>Logo & Brand Identity</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item" id="item-social-ad" data-id="item-social-ad" data-title="Social Media Ad Campaign" data-category="Social Media Designs" data-img="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="Social Media Ad">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>Social Media Ad Campaign</h4>
-                        <p>Social Media Designs</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item" id="item-event-flyer" data-id="item-event-flyer" data-title="Event Promo Flyer" data-category="Flyers & Posters" data-img="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80" alt="Flyer">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>Event Promo Flyer</h4>
-                        <p>Flyers & Posters</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item" id="item-business-cards" data-id="item-business-cards" data-title="Executive Business Cards" data-category="Business Cards" data-img="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80" alt="Business Cards">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>Executive Business Cards</h4>
-                        <p>Business Cards</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item" id="item-streetwear" data-id="item-streetwear" data-title="Custom Streetwear Merchandise" data-category="T-shirt & Merchandise" data-img="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Merchandise">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>Custom Streetwear Merchandise</h4>
-                        <p>Merchandise Design</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item" id="item-product-mockup" data-id="item-product-mockup" data-title="3D Product Box Mockup" data-category="Product Mockups" data-img="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Product Mockup">
-                    </div>
-                    <div class="gallery-info">
-                        <h4>3D Product Box Mockup</h4>
-                        <p>Product Mockups</p>
-                    </div>
-                </div>
+            
+            <!-- FILTER BUTTONS -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="designs">Designs</button>
+                <button class="filter-btn" data-filter="assets">Assets</button>
             </div>
 
-            <!-- WEB DEVELOPER AD SECTION -->
-            <div class="dev-ad-section">
-                <div class="dev-ad-card">
-                    <div class="dev-ad-content">
-                        <span class="dev-ad-badge">Special Ad</span>
-                        <h3>Fort Developers</h3>
-                        <p>Looking for a stunning, high-performance website like this for your business or personal portfolio? Designed by <strong>Fort DL</strong>.</p>
-                        <div class="dev-whatsapp-tag">
-                            <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 1.2rem;"></i> +234 802 824 1162
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- ==================== FIRST 6 PICTURES ==================== -->
+                <div class="gallery-item" id="item-brand-identity" data-id="item-brand-identity" data-title="Brand Identity System" data-category="Logo & Brand Identity" data-type="designs" data-img="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-img-wrapper"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80" alt="Brand Identity"></div>
+                    <div class="gallery-info"><h4>Brand Identity System</h4><p>Logo & Brand Identity</p></div>
+                </div>
+
+                <div class="gallery-item" id="item-social-ad" data-id="item-social-ad" data-title="Social Media Ad Campaign" data-category="Social Media Designs" data-type="designs" data-img="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-img-wrapper"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="Social Media Ad"></div>
+                    <div class="gallery-info"><h4>Social Media Ad Campaign</h4><p>Social Media Designs</p></div>
+                </div>
+
+                <div class="gallery-item" id="item-event-flyer" data-id="item-event-flyer" data-title="Event Promo Flyer" data-category="Flyers & Posters" data-type="designs" data-img="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-img-wrapper"><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80" alt="Flyer"></div>
+                    <div class="gallery-info"><h4>Event Promo Flyer</h4><p>Flyers & Posters</p></div>
+                </div>
+
+                <div class="gallery-item" id="item-business-cards" data-id="item-business-cards" data-title="Executive Business Cards" data-category="Business Cards" data-type="designs" data-img="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-img-wrapper"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80" alt="Business Cards"></div>
+                    <div class="gallery-info"><h4>Executive Business Cards</h4><p>Business Cards</p></div>
+                </div>
+
+                <div class="gallery-item" id="item-streetwear" data-id="item-streetwear" data-title="Custom Streetwear Merchandise" data-category="T-shirt & Merchandise" data-type="assets" data-img="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-img-wrapper"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Merchandise"></div>
+                    <div class="gallery-info"><h4>Custom Streetwear Merchandise</h4><p>Merchandise Design</p></div>
+                </div>
+
+                <div class="gallery-item" id="item-product-mockup" data-id="item-product-mockup" data-title="3D Product Box Mockup" data-category="Product Mockups" data-type="assets" data-img="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80">
+                    <div class="gallery-img-wrapper"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Product Mockup"></div>
+                    <div class="gallery-info"><h4>3D Product Box Mockup</h4><p>Product Mockups</p></div>
+                </div>
+
+                <!-- ==================== FIRST ADVERT (After 6 Pictures) ==================== -->
+                <div class="dev-ad-section">
+                    <div class="dev-ad-card">
+                        <div class="dev-ad-content">
+                            <span class="dev-ad-badge">Special Ad</span>
+                            <h3>Fort Developers</h3>
+                            <p>Looking for a stunning, high-performance website like this for your business or personal portfolio? Designed by <strong>Fort DL</strong>.</p>
+                            <div class="dev-whatsapp-tag">
+                                <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 1.2rem;"></i> +234 802 824 1162
+                            </div>
+                        </div>
+                        <div class="dev-ad-buttons">
+                            <a href="https://wa.me/2348028241162?text=Hi%20Fort%20DL,%20I%20want%20a%20website%20created%20for%20my%20business." target="_blank" class="btn btn-primary" style="background-color: #25D366;">Chat for Website</a>
+                            <a href="https://createawebsite.fortdevelopers.com.ng" class="btn btn-secondary">Browse Website Packages</a>
                         </div>
                     </div>
-                    <div class="dev-ad-buttons">
-                        <a href="https://wa.me/2348028241162?text=Hi%20Fort%20DL,%20I%20want%20a%20website%20created%20for%20my%20business." target="_blank" class="btn btn-primary" style="background-color: #25D366;">Chat for Website</a>
-                        <a href="https://createawebsite.fortdevelopers.com.ng" class="btn btn-secondary">Browse Website Packages</a>
+                </div>
+
+                <!-- ==================== NEXT 12 PICTURES (Pictures 7 to 18) ==================== -->
+                <div class="gallery-item" id="asset-1" data-id="asset-1" data-title="Almost Plain Gold & Yellow Texture" data-category="Background Asset" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/almost_plain_gold_and_yellow_design.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/almost_plain_gold_and_yellow_design.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Almost Plain Gold & Yellow Texture</h4><p>Background Asset</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-2" data-id="asset-2" data-title="Blue Gradient Water Curtain" data-category="Water Curtain Backdrop" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_gradient_background_water_curtain.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_gradient_background_water_curtain.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Blue Gradient Water Curtain</h4><p>Water Curtain Backdrop</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-3" data-id="asset-3" data-title="Blue Gradient Silhouette Hands" data-category="Gradient Backdrop" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_gradient_image_with_hands.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_gradient_image_with_hands.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Blue Gradient Silhouette Hands</h4><p>Gradient Backdrop</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-4" data-id="asset-4" data-title="Blue Icy Background" data-category="Icy Abstract" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_icy_background_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_icy_background_image.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Blue Icy Background</h4><p>Icy Abstract</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-5" data-id="asset-5" data-title="Blue & White Gradient Design" data-category="Gradient Backdrop" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_white_gradient_design.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_white_gradient_design.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Blue & White Gradient Design</h4><p>Gradient Backdrop</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-6" data-id="asset-6" data-title="Blue & White Plain Background" data-category="Minimalist Background" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_white_plain_background_design.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/blue_white_plain_background_design.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Blue & White Plain Background</h4><p>Minimalist Background</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-7" data-id="asset-7" data-title="Cross Yellowish Background" data-category="Religious Background" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/cross_yellowish_background.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/cross_yellowish_background.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Cross Yellowish Background</h4><p>Religious Background</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-8" data-id="asset-8" data-title="Garden Waterfall Landscape" data-category="Nature Landscape" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/garden_waterfall_landscape_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/garden_waterfall_landscape_image.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Garden Waterfall Landscape</h4><p>Nature Landscape</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-9" data-id="asset-9" data-title="Glitter Gold Texture" data-category="Luxury Texture" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/glitter_gold_design_Image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/glitter_gold_design_Image.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Glitter Gold Texture</h4><p>Luxury Texture</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-10" data-id="asset-10" data-title="Gradient Green Background" data-category="Abstract Green" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/gradient_green_background_design.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/gradient_green_background_design.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Gradient Green Background</h4><p>Abstract Green</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-11" data-id="asset-11" data-title="Fiery Flame Texture" data-category="Special FX" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/kind_of_fire_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/kind_of_fire_image.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Fiery Flame Texture</h4><p>Special FX</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-12" data-id="asset-12" data-title="Lagos Skyline View" data-category="Cityscape Asset" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/lagos_view_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/lagos_view_image.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Lagos Skyline View</h4><p>Cityscape Asset</p></div>
+                </div>
+
+                <!-- ==================== SECOND ADVERT (After another 12 Pictures) ==================== -->
+                <div class="dev-ad-section">
+                    <div class="dev-ad-card">
+                        <div class="dev-ad-content">
+                            <span class="dev-ad-badge">Special Ad</span>
+                            <h3>Fort Developers</h3>
+                            <p>Looking for a stunning, high-performance website like this for your business or personal portfolio? Designed by <strong>Fort DL</strong>.</p>
+                            <div class="dev-whatsapp-tag">
+                                <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 1.2rem;"></i> +234 802 824 1162
+                            </div>
+                        </div>
+                        <div class="dev-ad-buttons">
+                            <a href="https://wa.me/2348028241162?text=Hi%20Fort%20DL,%20I%20want%20a%20website%20created%20for%20my%20business." target="_blank" class="btn btn-primary" style="background-color: #25D366;">Chat for Website</a>
+                            <a href="https://createawebsite.fortdevelopers.com.ng" class="btn btn-secondary">Browse Website Packages</a>
+                        </div>
                     </div>
+                </div>
+
+                <!-- ==================== NEXT 12 PICTURES (Pictures 19 to 30) ==================== -->
+                <div class="gallery-item" id="asset-13" data-id="asset-13" data-title="Gold Squeezed Silk Cloth" data-category="Luxury Fabric" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/like_gold_squizeed_cloth_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/like_gold_squizeed_cloth_image.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Gold Squeezed Silk Cloth</h4><p>Luxury Fabric</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-14" data-id="asset-14" data-title="Nigerian Football Fans Chanting" data-category="Sports Crowd" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/nigerian_fans_chanting_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/nigerian_fans_chanting_image.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Nigerian Football Fans Chanting</h4><p>Sports Crowd</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-15" data-id="asset-15" data-title="Nigerian Flag Crest" data-category="National Emblem" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/nigerian_flag_crest.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/nigerian_flag_crest.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Nigerian Flag Crest</h4><p>National Emblem</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-16" data-id="asset-16" data-title="Nigerian Flag Area View" data-category="National Asset" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/nigerian_flag_in_area_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/nigerian_flag_in_area_image.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Nigerian Flag Area View</h4><p>National Asset</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-17" data-id="asset-17" data-title="Nigerian Flag White Background" data-category="National Asset" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/nigerian_flag_white_background_38338.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/nigerian_flag_white_background_38338.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Nigerian Flag White Background</h4><p>National Asset</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-18" data-id="asset-18" data-title="Pure Yellow Golden Background" data-category="Golden Backdrop" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/pure_yellow_golden_background.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/pure_yellow_golden_background.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Pure Yellow Golden Background</h4><p>Golden Backdrop</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-19" data-id="asset-19" data-title="Purple Gradient with White Flames" data-category="Abstract Glow" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/purple_background_gradient_side_white_flames.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/purple_background_gradient_side_white_flames.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Purple Gradient with White Flames</h4><p>Abstract Glow</p></div>
+                </div>
+
+                <div class="gallery-item" id="asset-20" data-id="asset-20" data-title="Stagy Brown Textured Background" data-category="Vintage Texture" data-type="assets" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/stagy_brown_design.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/assets/stagy_brown_design.jpeg" alt="Asset"></div>
+                    <div class="gallery-info"><h4>Stagy Brown Textured Background</h4><p>Vintage Texture</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-1" data-id="design-1" data-title="Emmzy Graphics Custom Art" data-category="Brand Showcase" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/a_emmzy_graphics_design.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/a_emmzy_graphics_design.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Emmzy Graphics Custom Art</h4><p>Brand Showcase</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-2" data-id="design-2" data-title="Creative Typography Cover" data-category="Poster Design" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/a_random_image_for_name.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/a_random_image_for_name.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Creative Typography Cover</h4><p>Poster Design</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-3" data-id="design-3" data-title="Circle Silhouette Crowd Concept" data-category="Conceptual Design" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/circle_image_people_in_background.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/circle_image_people_in_background.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Circle Silhouette Crowd Concept</h4><p>Conceptual Design</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-4" data-id="design-4" data-title="Dove Holding Fabric Artwork" data-category="Spiritual Design" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/dove_holding_cloth.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/dove_holding_cloth.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Dove Holding Fabric Artwork</h4><p>Spiritual Design</p></div>
+                </div>
+
+                <!-- ==================== THIRD ADVERT (After another 12 Pictures) ==================== -->
+                <div class="dev-ad-section">
+                    <div class="dev-ad-card">
+                        <div class="dev-ad-content">
+                            <span class="dev-ad-badge">Special Ad</span>
+                            <h3>Fort Developers</h3>
+                            <p>Looking for a stunning, high-performance website like this for your business or personal portfolio? Designed by <strong>Fort DL</strong>.</p>
+                            <div class="dev-whatsapp-tag">
+                                <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 1.2rem;"></i> +234 802 824 1162
+                            </div>
+                        </div>
+                        <div class="dev-ad-buttons">
+                            <a href="https://wa.me/2348028241162?text=Hi%20Fort%20DL,%20I%20want%20a%20website%20created%20for%20my%20business." target="_blank" class="btn btn-primary" style="background-color: #25D366;">Chat for Website</a>
+                            <a href="https://createawebsite.fortdevelopers.com.ng" class="btn btn-secondary">Browse Website Packages</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== REMAINING PICTURES ==================== -->
+                <div class="gallery-item" id="design-5" data-id="design-5" data-title="Dove Near Holy Cross" data-category="Religious Artwork" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/dove_near_cross.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/dove_near_cross.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Dove Near Holy Cross</h4><p>Religious Artwork</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-6" data-id="design-6" data-title="Radiant Yellow Event Flyer" data-category="Event Flyer" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/gradient_yellow_shbfsjidf_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/gradient_yellow_shbfsjidf_image.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Radiant Yellow Event Flyer</h4><p>Event Flyer</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-7" data-id="design-7" data-title="Green Radiant Glow Banner" data-category="Promotional Banner" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/green_radiant_background_dhdhh.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/green_radiant_background_dhdhh.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Green Radiant Glow Banner</h4><p>Promotional Banner</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-8" data-id="design-8" data-title="Stadium Hand Raising Silhouette" data-category="Event Design" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/hand_in_stadium_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/hand_in_stadium_image.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Stadium Hand Raising Silhouette</h4><p>Event Design</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-9" data-id="design-9" data-title="Hands in Chains Conceptual Art" data-category="Symbolic Art" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/hands_in_chains_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/hands_in_chains_image.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Hands in Chains Conceptual Art</h4><p>Symbolic Art</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-10" data-id="design-10" data-title="Centralized Gold Ring Motif" data-category="Branding Design" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/image_like_gold_ring_design_centralized.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/image_like_gold_ring_design_centralized.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Centralized Gold Ring Motif</h4><p>Branding Design</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-11" data-id="design-11" data-title="Man Under Cave Opening View" data-category="Cinematic Artwork" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/man_under_cave_opening.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/man_under_cave_opening.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Man Under Cave Opening View</h4><p>Cinematic Artwork</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-12" data-id="design-12" data-title="Blurred Crowd Background Art" data-category="Poster Artwork" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/people_backgroun_face_blurred_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/people_backgroun_face_blurred_image.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Blurred Crowd Background Art</h4><p>Poster Artwork</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-13" data-id="design-13" data-title="Stadium Prayer Gathering" data-category="Worship Flyer" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/people_praying_over_stadium_or_people_gathering.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/people_praying_over_stadium_or_people_gathering.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Stadium Prayer Gathering</h4><p>Worship Flyer</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-14" data-id="design-14" data-title="Prayer Overlay Design" data-category="Spiritual Flyer" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/people_praying_sand_blurred_overlay.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/people_praying_sand_blurred_overlay.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Prayer Overlay Design</h4><p>Spiritual Flyer</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-15" data-id="design-15" data-title="Dynamic Graphic Concept" data-category="Creative Design" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/random_image_name.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/random_image_name.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Dynamic Graphic Concept</h4><p>Creative Design</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-16" data-id="design-16" data-title="Red Abstract Crowd Composition" data-category="Abstract Poster" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/red_abstract_image_with_people.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/red_abstract_image_with_people.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Red Abstract Crowd Composition</h4><p>Abstract Poster</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-17" data-id="design-17" data-title="Meteorite Impact Artwork" data-category="Sci-Fi Design" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/sort_of_metorite_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/sort_of_metorite_image.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Meteorite Impact Artwork</h4><p>Sci-Fi Design</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-18" data-id="design-18" data-title="Global Flags Sphere Design" data-category="International Theme" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/sphere_of_flags_crashed.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/sphere_of_flags_crashed.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Global Flags Sphere Design</h4><p>International Theme</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-19" data-id="design-19" data-title="Stadium Fans Merged Composition" data-category="Sports Banner" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/stadium_fans_merged_image.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/stadium_fans_merged_image.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Stadium Fans Merged Composition</h4><p>Sports Banner</p></div>
+                </div>
+
+                <div class="gallery-item" id="design-20" data-id="design-20" data-title="Inspirational Stadium Artwork" data-category="Motivational Poster" data-type="designs" data-img="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/wheelchair_man_smoke_stadium_under.jpeg">
+                    <div class="gallery-img-wrapper"><img src="https://fortdevelopers492-hub.github.io/samgraphicswebsite/gallery_images/designs/wheelchair_man_smoke_stadium_under.jpeg" alt="Design"></div>
+                    <div class="gallery-info"><h4>Inspirational Stadium Artwork</h4><p>Motivational Poster</p></div>
                 </div>
             </div>
         </div>
@@ -752,6 +988,29 @@
         const navLinks = document.getElementById('navLinks');
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        // Filter functionality for Assets & Designs (Ensures ads remain visible or handle correctly)
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const adSections = document.querySelectorAll('.dev-ad-section');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    const type = item.getAttribute('data-type');
+                    if (filter === 'all' || type === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
         });
 
         // Function to check and update Subscription Status Badge UI & Countdown info
